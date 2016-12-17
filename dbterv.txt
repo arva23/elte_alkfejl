@@ -1,0 +1,48 @@
+users
+-------------
+id : Int (primary)
+username : String
+email : String
+password : String
+created_at : Timestamp
+updated_at : Timestamp
+
+categories
+-------------
+id : Int (primary)
+name : String
+
+users_categories
+-------------
+user_id : Int -> users.id
+category_id : Int -> categories.id
+(user_id, category_id) (primary)
+
+producers
+-------------
+id : Int (primary)
+name : String
+
+items
+-------------
+id : Int (primary)
+name : String
+price : Int
+amount : Int
+category_id : Int -> categories.id
+producer_id : Int -> producers.id
+created_at : Timestamp
+updated_at : Timestamp
+
+
+bence.fejes@gmail.com
+
+
+var valaki = yield User.find(1)
+var kategoriak = yield valaki.managedCategories().fetch()
+
+
+var category = yield Category.find(10)
+var managers = yield category.managers().fetch()
+
+yield valaki.managedCategories().attach([category.id])
